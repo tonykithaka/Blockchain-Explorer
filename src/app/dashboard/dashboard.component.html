@@ -1,0 +1,98 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+<div class="main-content">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Current Block</h5>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{latestBlockNumber}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Current Difficulty</h5>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{latestBlockDifficulty}}</h5>
+        </div>
+      </div>   
+    </div>
+    <div class="col-lg-4 col-md-6">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-category">Latest Transactions</h5>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{latestBlockTxnsLength}}</h5>
+        </div>
+      </div> 
+    </div>
+  </div>
+  <div class="row">
+    
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-category">Latest Blocks List</h5>
+          <h4 class="card-title">Last 10 Latest blocks</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              
+              <tbody>
+                <tr *ngFor="let blocks of latestBlockArray">
+                  <td>
+                    <div ng-click="sayHello((blocks | async).number)"><small class="text-info" style="margin-bottom: 4px;"><b>{{(blocks | async).number}}</b></small></div>
+                    <div><small style="margin-bottom: 4px;"><b>{{(blocks | async).transactions.length}} Txns</b></small></div>
+                  </td>
+                  <td>
+                    <div><small><b>Miner : {{(blocks | async).miner  | slice:0:8}}...</b></small></div>
+                    <div><small><b>Hash&nbsp; : {{(blocks | async).hash | slice:0:8}}...</b> </small></div>
+                  </td>
+                  <td>
+                    <div><small><b>Difficulty : {{(blocks | async).difficulty}}</b></small></div>
+                    <div><small><b>Size &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{(blocks | async).size}}</b></small></div>
+                  </td>
+               </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-category">Latest Transactions List</h5>
+            <h4 class="card-title">Last 10 Latest Transactions</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                
+                  <tbody>
+                      <tr *ngFor="let txns of latestBlockTxnsDetails">
+                        <td>
+                          <div><small class="text-info" style="margin-bottom: 4px;"><b>Transaction Hash : {{txns.hash | slice:0:8}}</b></small></div>
+                          <div><small style="margin-bottom: 4px;"><b>Block Number&nbsp;&nbsp;&nbsp; : {{txns.blockNumber}} </b></small></div>
+                        </td>
+                        <td>
+                          <div><small><b>From : {{txns.from | slice:0:8}}...</b></small></div>
+                          <div><small><b>To&nbsp;&nbsp; : {{txns.to | slice:0:8}}...</b> </small></div>
+                        </td>
+                     </tr>
+                    </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
